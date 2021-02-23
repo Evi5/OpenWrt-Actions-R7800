@@ -15,7 +15,7 @@ DEVICE_TYPE?=router
 # Default packages - the really basic set
 DEFAULT_PACKAGES:=base-files libc libgcc busybox dropbear mtd uci opkg netifd fstools uclient-fetch logd urandom-seed urngd \
 		  coreutils kmod-nf-nathelper kmod-nf-nathelper-extra kmod-ipt-raw wget libustream-openssl ca-certificates \
-		  default-settings luci luci-base luci-compat luci-lib-fs luci-lib-ipkg block-mount \
+		  luci luci-base default-settings luci-compat luci-lib-fs luci-lib-ipkg block-mount \
 		  luci-app-ddns luci-app-upnp luci-app-autoreboot luci-app-flowoffload luci-app-netdata \
 		  luci-app-filetransfer luci-app-ssr-plus luci-app-unblockmusic luci-app-serverchan \
 		  luci-app-arpbind luci-app-ramfree luci-app-cpufreq luci-app-qos-gargoyle \
