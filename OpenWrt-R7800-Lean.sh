@@ -94,6 +94,11 @@ EOF
 # CONFIG_EFI_IMAGES=y
 # EOF
 
+# luci-base
+cat >> .config <<EOF
+CONFIG_PACKAGE_luci-base=y
+EOF
+
 # IPv6支持:
 cat >> .config <<EOF
 CONFIG_PACKAGE_dnsmasq_full_dhcpv6=y
