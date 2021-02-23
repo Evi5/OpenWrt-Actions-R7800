@@ -107,7 +107,7 @@ jobs:
         
     # 更新源 sed -i 's/\"#src-git\"/\"src-git\"/g' ./feeds.conf.default
     - name: Update Feeds
-      if: env.REPO_URL != 'https://github.com/coolsnowwolf/lede'
+      # if: env.REPO_URL != 'https://github.com/coolsnowwolf/lede'
       working-directory: ./openwrt
       run:  |
         ./scripts/feeds clean
@@ -115,7 +115,7 @@ jobs:
 
     # 安装源
     - name: Install Feeds
-      if: env.REPO_URL != 'https://github.com/coolsnowwolf/lede'
+      # if: env.REPO_URL != 'https://github.com/coolsnowwolf/lede'
       working-directory: ./openwrt
       run:  ./scripts/feeds install -a
 
