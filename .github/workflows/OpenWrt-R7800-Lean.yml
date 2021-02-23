@@ -28,11 +28,11 @@ on:
 
 env:
   # 源
-  REPO_URL: https://github.com/Evi5/lede
+  REPO_URL: https://github.com/coolsnowwolf/lede
   # 分支
   REPO_BRANCH: master
   # PassWall插件包 
-  EX_PKG: false
+  EX_PKG: true
   # 脚本
   DIY_SH: OpenWrt-R7800-Lean.sh
   # 开启SSH连接
@@ -107,7 +107,6 @@ jobs:
         
     # 更新源 sed -i 's/\"#src-git\"/\"src-git\"/g' ./feeds.conf.default
     - name: Update Feeds
-      # if: env.REPO_URL != 'https://github.com/coolsnowwolf/lede'
       working-directory: ./openwrt
       run:  |
         ./scripts/feeds clean
@@ -115,7 +114,6 @@ jobs:
 
     # 安装源
     - name: Install Feeds
-      # if: env.REPO_URL != 'https://github.com/coolsnowwolf/lede'
       working-directory: ./openwrt
       run:  ./scripts/feeds install -a
 
