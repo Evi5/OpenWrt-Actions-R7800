@@ -68,8 +68,8 @@ touch ./.config
 
 # 编译者信息
 cat >> .config <<EOF
-CONFIG_KERNEL_BUILD_USER="ClayMoreBoy"
-CONFIG_KERNEL_BUILD_DOMAIN="GitHub Actions @ ClayMoreBoy"
+CONFIG_KERNEL_BUILD_USER="Evi5"
+CONFIG_KERNEL_BUILD_DOMAIN="GitHub Actions @ Evi5"
 EOF
 
 # 编译R7800固件:
@@ -106,14 +106,15 @@ CONFIG_PACKAGE_ipv6helper=y
 EOF
 
 # 多文件系统支持:
-# cat >> .config <<EOF
+cat >> .config <<EOF
 # CONFIG_PACKAGE_kmod-fs-nfs=y
 # CONFIG_PACKAGE_kmod-fs-nfs-common=y
 # CONFIG_PACKAGE_kmod-fs-nfs-v3=y
 # CONFIG_PACKAGE_kmod-fs-nfs-v4=y
 # CONFIG_PACKAGE_kmod-fs-ntfs=y
 # CONFIG_PACKAGE_kmod-fs-squashfs=y
-# EOF
+CONFIG_PACKAGE_kmod-fs-ext4=y
+EOF
 
 # USB3.0支持:
 cat >> .config <<EOF
@@ -122,6 +123,28 @@ CONFIG_PACKAGE_kmod-usb-ohci-pci=y
 CONFIG_PACKAGE_kmod-usb2=y
 CONFIG_PACKAGE_kmod-usb2-pci=y
 CONFIG_PACKAGE_kmod-usb3=y
+CONFIG_PACKAGE_kmod-usb-storage=y
+CONFIG_PACKAGE_kmod-usb-uhci=y
+CONFIG_PACKAGE_kmod-usb-storage-uas=y
+CONFIG_PACKAGE_usbutils=y
+CONFIG_PACKAGE_kmod-usb-storage=y
+CONFIG_PACKAGE_kmod-usb-storage-extras=y
+CONFIG_PACKAGE_kmod-nls-cp437=y
+CONFIG_PACKAGE_kmod-nls-iso8859-1=y
+CONFIG_PACKAGE_block-mount=y
+EOF
+
+# smaba支持
+cat >> .config <<EOF
+CONFIG_PACKAGE_luci-app-samba4=y
+CONFIG_PACKAGE_samba4-server=y
+CONFIG_PACKAGE_luci-i18n-samba4-zh-cn=y
+CONFIG_PACKAGE_samba4-client=y
+EOF
+
+# svn支持
+cat >> .config <<EOF
+CONFIG_PACKAGE_subversion-server=y
 EOF
 
 # 第三方插件选择:
@@ -150,7 +173,7 @@ CONFIG_PACKAGE_luci-app-unblockmusic=y #解锁网易云灰色歌曲
 CONFIG_UnblockNeteaseMusic_Go=y #解锁网易云灰色歌曲
 # CONFIG_UnblockNeteaseMusic_NodeJS is not set #解锁网易云灰色歌曲
 # CONFIG_PACKAGE_luci-app-hd-idle is not set #磁盘休眠
-# CONFIG_PACKAGE_luci-app-wrtbwmon is not set #实时流量监测
+CONFIG_PACKAGE_luci-app-wrtbwmon=y #实时流量监测
 EOF
 
 # Passwall插件:
@@ -264,60 +287,60 @@ EOF
 # 常用LuCI插件(启用):
 cat >> .config <<EOF
 CONFIG_PACKAGE_luci-app-adbyby-plus=y #adbyby去广告	
-# CONFIG_PACKAGE_luci-app-webadmin is not set #Web管理页面设置
+CONFIG_PACKAGE_luci-app-webadmin=y #Web管理页面设置
 CONFIG_PACKAGE_luci-app-filetransfer=y #系统-文件传输
 CONFIG_PACKAGE_luci-app-qos-gargoyle=y #Gargoyle QoS流控
-# CONFIG_PACKAGE_luci-app-filebrowser is not set #文件浏览器
+CONFIG_PACKAGE_luci-app-filebrowser=y #文件浏览器
 CONFIG_PACKAGE_luci-app-autoreboot=y #定时重启
-# CONFIG_PACKAGE_luci-app-frpc is not set #Frp内网穿透
-# CONFIG_PACKAGE_luci-app-frps is not set #Frp内网穿透服务器
+CONFIG_PACKAGE_luci-app-frpc=y #Frp内网穿透
+CONFIG_PACKAGE_luci-app-frps=y #Frp内网穿透服务器
 CONFIG_PACKAGE_luci-app-upnp=y #通用即插即用UPnP(端口自动转发)
 # CONFIG_PACKAGE_luci-app-softethervpn is not set #SoftEtherVPN服务器
 CONFIG_PACKAGE_luci-app-vlmcsd=y #KMS激活服务器
-# CONFIG_PACKAGE_luci-app-sqm is not set #SQM智能队列管理
+CONFIG_PACKAGE_luci-app-sqm=y #SQM智能队列管理
 CONFIG_PACKAGE_luci-app-ddns=y #DDNS服务
-# CONFIG_PACKAGE_luci-app-vsftpd is not set #FTP服务器
-# CONFIG_PACKAGE_luci-app-wol is not set #网络唤醒
-# CONFIG_PACKAGE_luci-app-control-mia is not set #时间控制
-# CONFIG_PACKAGE_luci-app-control-timewol is not set #定时唤醒
-# CONFIG_PACKAGE_luci-app-control-webrestriction is not set #访问限制
-# CONFIG_PACKAGE_luci-app-control-weburl is not set #网址过滤
+CONFIG_PACKAGE_luci-app-vsftpd=y #FTP服务器
+CONFIG_PACKAGE_luci-app-wol=y #网络唤醒
+CONFIG_PACKAGE_luci-app-control-mia=y #时间控制
+CONFIG_PACKAGE_luci-app-control-timewol=y #定时唤醒
+CONFIG_PACKAGE_luci-app-control-webrestriction=y #访问限制
+CONFIG_PACKAGE_luci-app-control-weburl=y #网址过滤
 # CONFIG_PACKAGE_luci-app-zerotier is not set #ZeroTier内网穿透
 CONFIG_PACKAGE_luci-app-accesscontrol=y #访问时间控制
-# CONFIG_PACKAGE_luci-app-nlbwmon is not set #宽带流量监控
+CONFIG_PACKAGE_luci-app-nlbwmon=y #宽带流量监控
 CONFIG_PACKAGE_luci-app-flowoffload=y #Turbo ACC 网络加速
 CONFIG_PACKAGE_luci-app-guest-wifi=y #WiFi访客网络
-# CONFIG_PACKAGE_luci-app-netdata is not set #Netdata实时监控(图表)
+CONFIG_PACKAGE_luci-app-netdata=y #Netdata实时监控(图表)
 CONFIG_PACKAGE_luci-app-cpufreq=y #CPU 性能优化调节
 EOF
 
 # LuCI主题:
 cat >> .config <<EOF
 CONFIG_PACKAGE_luci-theme-argon=y
-# CONFIG_PACKAGE_luci-theme-atmaterial=y
-# CONFIG_PACKAGE_luci-theme-bootstrap is not set
+CONFIG_PACKAGE_luci-theme-atmaterial=y
+CONFIG_PACKAGE_luci-theme-bootstrap=y
 CONFIG_PACKAGE_luci-theme-material=y
-# CONFIG_PACKAGE_luci-theme-bootstrap-mod is not set
-# CONFIG_PACKAGE_luci-theme-netgear is not set
-# CONFIG_PACKAGE_luci-theme-rosy is not set
-# CONFIG_PACKAGE_luci-theme-Butterfly is not set
-# CONFIG_PACKAGE_luci-theme-Butterfly-dark is not set
-# CONFIG_PACKAGE_luci-theme-opentomato is not set
-# CONFIG_PACKAGE_luci-theme-opentomcat is not set
-# CONFIG_PACKAGE_luci-theme-argon-mod is not set
-# CONFIG_PACKAGE_luci-theme-darkmatter is not set
+CONFIG_PACKAGE_luci-theme-bootstrap-mod=y
+CONFIG_PACKAGE_luci-theme-netgear=y
+CONFIG_PACKAGE_luci-theme-rosy=y
+CONFIG_PACKAGE_luci-theme-Butterfly=y
+CONFIG_PACKAGE_luci-theme-Butterfly-dark=y
+CONFIG_PACKAGE_luci-theme-opentomato=y
+CONFIG_PACKAGE_luci-theme-opentomcat=y
+CONFIG_PACKAGE_luci-theme-argon-mod=y
+CONFIG_PACKAGE_luci-theme-darkmatter=y
 EOF
 
 # 常用软件包:
-# cat >> .config <<EOF
+cat >> .config <<EOF
 # CONFIG_PACKAGE_curl=y
-# CONFIG_PACKAGE_htop=y
+CONFIG_PACKAGE_htop=y
 # CONFIG_PACKAGE_nano=y
 # CONFIG_PACKAGE_screen=y
 # CONFIG_PACKAGE_tree=y
 # CONFIG_PACKAGE_vim-fuller=y
 # CONFIG_PACKAGE_wget=y
-# EOF
+EOF
 
 # 
 # ========================固件定制部分结束========================
