@@ -146,15 +146,6 @@ jobs:
         ngrok_token: ${{ secrets.NGROK_TOKEN }}
       if: env.SSH_ACTIONS == 'true'
 
-    # 编译luci-base
-    - name: Compile luci-base
-      working-directory: ./openwrt
-      id: compile0
-      run: |
-        echo -e "Compile luci-base"
-        make package/feeds/luci/luci-base/compile V=s
-        echo "Compile luci-base::set-output name=status::success"
-
     # 编译固件
     - name: Compile Firmware
       working-directory: ./openwrt
