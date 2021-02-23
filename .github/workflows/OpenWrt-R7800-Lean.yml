@@ -31,7 +31,7 @@ env:
   REPO_URL: https://github.com/Evi5/lede
   # 分支
   REPO_BRANCH: master
-  # PassWall插件包
+  # PassWall插件包 
   EX_PKG: true
   # 脚本
   DIY_SH: OpenWrt-R7800-Lean.sh
