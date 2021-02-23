@@ -139,7 +139,7 @@ jobs:
 
     # SSH连接
     - name: SSH connection to Actions
-      uses: P3TERX/debugger-action@master
+      uses: Evi5/debugger-action@master
       if: env.SSH_ACTIONS == 'true'
 
     # 编译luci-base
