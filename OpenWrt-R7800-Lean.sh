@@ -32,7 +32,7 @@ sed -i 's/IMG_PREFIX:=$(VERSION_DIST_SANITIZED)/IMG_PREFIX:=ClayMoreBoy-$(shell 
 cid=$(date "+%Y-%m-%d")
 sed -i 's/R2020/R[${cid}]/g' package/lean/default-settings/files/zzz-default-settings
 
-# 修改版本号
+# 修改版本号 
 sed -i 's/V2020/V${{ env.DATE }}/g' package/base-files/files/etc/banner
 
 # 添加第三方软件包
