@@ -21,7 +21,7 @@ on:
 #  watch:
 #    types: [started]
 
-# 编辑触发 
+# 编辑触发
   push:
     branches: 
        - master
