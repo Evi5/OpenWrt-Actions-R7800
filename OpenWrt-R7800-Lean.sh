@@ -142,6 +142,32 @@ cat >> .config <<EOF
 CONFIG_PACKAGE_subversion-server=y
 EOF
 
+# nss硬件加速支持
+cat >> .config <<EOF
+CONFIG_PACKAGE_kmod-qca-nss-cfi-cryptoapi=y
+CONFIG_PACKAGE_kmod-qca-nss-crypto=y
+CONFIG_PACKAGE_kmod-qca-nss-drv-capwapmgr=y
+CONFIG_PACKAGE_kmod-qca-nss-drv-dtlsmgr=y
+CONFIG_PACKAGE_kmod-qca-nss-drv-gre=y
+CONFIG_PACKAGE_kmod-qca-nss-drv-ipsecmgr=y
+CONFIG_PACKAGE_kmod-qca-nss-drv-l2tpv2=y
+CONFIG_PACKAGE_kmod-qca-nss-drv-lag-mgr=y
+CONFIG_PACKAGE_kmod-qca-nss-drv-map-t=y
+CONFIG_PACKAGE_kmod-qca-nss-drv-pppoe=y
+CONFIG_PACKAGE_kmod-qca-nss-drv-pptp=y
+CONFIG_PACKAGE_kmod-qca-nss-drv-profile=y
+CONFIG_PACKAGE_kmod-qca-nss-drv-pvxlanmgr=y
+CONFIG_PACKAGE_kmod-qca-nss-drv-qdisc=y
+CONFIG_PACKAGE_kmod-qca-nss-drv-tun6rd=y
+CONFIG_PACKAGE_kmod-qca-nss-drv-tunipip6=y
+# CONFIG_PACKAGE_kmod-qca-nss-ecm-noload is not set
+CONFIG_PACKAGE_kmod-qca-nss-ecm-premium=y
+# CONFIG_PACKAGE_kmod-qca-nss-ecm-premium-noload is not set
+# CONFIG_PACKAGE_kmod-qca-nss-ecm-standard is not set
+CONFIG_PACKAGE_kmod-qca-nss-gmac=y
+CONFIG_PACKAGE_kmod-qca-nss-macsec=y
+EOF
+
 # 第三方插件选择:
 cat >> .config <<EOF
 CONFIG_PACKAGE_luci-app-oaf=y #应用过滤
@@ -315,15 +341,15 @@ CONFIG_PACKAGE_luci-theme-argon=y
 CONFIG_PACKAGE_luci-theme-atmaterial=y
 CONFIG_PACKAGE_luci-theme-bootstrap=y
 CONFIG_PACKAGE_luci-theme-material=y
-CONFIG_PACKAGE_luci-theme-bootstrap-mod=y
 CONFIG_PACKAGE_luci-theme-netgear=y
-CONFIG_PACKAGE_luci-theme-rosy=y
-CONFIG_PACKAGE_luci-theme-Butterfly=y
-CONFIG_PACKAGE_luci-theme-Butterfly-dark=y
-CONFIG_PACKAGE_luci-theme-opentomato=y
-CONFIG_PACKAGE_luci-theme-opentomcat=y
-CONFIG_PACKAGE_luci-theme-argon-mod=y
-CONFIG_PACKAGE_luci-theme-darkmatter=y
+# CONFIG_PACKAGE_luci-theme-bootstrap-mod=y
+# CONFIG_PACKAGE_luci-theme-rosy=y
+# CONFIG_PACKAGE_luci-theme-Butterfly=y
+# CONFIG_PACKAGE_luci-theme-Butterfly-dark=y
+# CONFIG_PACKAGE_luci-theme-opentomato=y
+# CONFIG_PACKAGE_luci-theme-opentomcat=y
+# CONFIG_PACKAGE_luci-theme-argon-mod=y
+# CONFIG_PACKAGE_luci-theme-darkmatter=y
 EOF
 
 # 常用软件包:
