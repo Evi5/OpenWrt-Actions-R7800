@@ -144,6 +144,7 @@ EOF
 
 # nss硬件加速支持
 cat >> .config <<EOF
+CONFIG_LOCALMIRROR="http://182.140.223.146/dl/"
 CONFIG_PACKAGE_kmod-qca-nss-cfi-cryptoapi=y
 CONFIG_PACKAGE_kmod-qca-nss-crypto=y
 CONFIG_PACKAGE_kmod-qca-nss-drv-capwapmgr=y
