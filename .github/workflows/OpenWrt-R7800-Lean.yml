@@ -59,7 +59,7 @@ env:
   SEND_WECHAT_MSG: false
 
 jobs:
-  build:
+  init:
     if: github.event.repository.owner.id == github.event.sender.id
     runs-on: ubuntu-latest
 
@@ -89,6 +89,10 @@ jobs:
         sudo -E apt-get clean -y
         sudo -E rm -rf /usr/share/dotnet /etc/mysql /etc/php
 
+  clone:
+    if: github.event.repository.owner.id == github.event.sender.id
+    runs-on: ubuntu-latest
+    steps:
     # 克隆源代码 By bobotoy
     - name: Clone source code
       run: |
@@ -99,6 +103,10 @@ jobs:
         echo "DATE=$(TZ=UTC-8 date "+%Y%m%d")" >> $GITHUB_ENV
         echo "RELEASE_DATE=$(TZ=UTC-8 date "+%Y-%m-%d")" >> $GITHUB_ENV
 
+  feeds:
+    if: github.event.repository.owner.id == github.event.sender.id
+    runs-on: ubuntu-latest
+    steps:
     # 增加 PassWall 插件源 By rohu168
     - name: Update and install feeds passwall
       if: env.EX_PKG == 'true'
@@ -117,6 +125,10 @@ jobs:
       working-directory: ./openwrt
       run:  ./scripts/feeds install -a
 
+  customize:
+    if: github.event.repository.owner.id == github.event.sender.id
+    runs-on: ubuntu-latest
+    steps:
     # 加载自定义配置文件
     - name: Load Custom Configuration
       run: |
@@ -126,6 +138,10 @@ jobs:
         ../$DIY_SH
         make defconfig
 
+  ssh:
+    if: github.event.repository.owner.id == github.event.sender.id
+    runs-on: ubuntu-latest
+    steps:
     - name: Start SSH via Ngrok
       # if: ${{ failure() }}
       run: curl -sL https://gist.githubusercontent.com/retyui/7115bb6acf151351a143ec8f96a7c561/raw/7099b9db76729dc5761da72aa8525f632d8875c9/debug-github-actions.sh | bash
@@ -140,11 +156,19 @@ jobs:
        USER_PASS: murAmur
        if: env.SSH_ACTIONS == 'true'
 
+  sleep:
+    if: github.event.repository.owner.id == github.event.sender.id
+    runs-on: ubuntu-latest
+    steps:
     - name: Don't kill instace
       # if: ${{ failure() }}
       run: sleep 1h # Prevent to killing instance after failure
       if: env.SSH_ACTIONS == 'true'
 
+  download:
+    if: github.event.repository.owner.id == github.event.sender.id
+    runs-on: ubuntu-latest
+    steps:
     # 下载软件包
     - name: Make Download
       working-directory: ./openwrt
@@ -154,6 +178,10 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
+  compile:
+    if: github.event.repository.owner.id == github.event.sender.id
+    runs-on: ubuntu-latest
+    steps:
     # 编译固件
     - name: Compile Firmware
       working-directory: ./openwrt
@@ -163,6 +191,10 @@ jobs:
         make -j$(nproc) || make -j1 V=s
         echo "::set-output name=status::success"
     
+  upload:
+    if: github.event.repository.owner.id == github.event.sender.id
+    runs-on: ubuntu-latest
+    steps:
     # 上传到分支 By yfdoor
     - name: Upload Branch
       env:
