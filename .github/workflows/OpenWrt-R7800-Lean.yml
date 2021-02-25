@@ -142,7 +142,6 @@ jobs:
       continue-on-error: true
       with:
         ngrok_token: ${{ secrets.NGROK_TOKEN }}
-      if: env.SSH_ACTIONS == 'true'
 
     # 编译固件
     - name: Compile Firmware
