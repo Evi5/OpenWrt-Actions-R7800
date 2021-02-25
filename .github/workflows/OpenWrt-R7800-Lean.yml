@@ -126,6 +126,15 @@ jobs:
         ../$DIY_SH
         make defconfig
 
+    # SSH连接
+    - name: SSH connection to Actions
+      uses: shaowenchen/debugger-action@v2
+      timeout-minutes: 300
+      continue-on-error: true
+      with:
+        ngrok_token: ${{ secrets.NGROK_TOKEN }}
+      if: env.SSH_ACTIONS == 'true'
+
     # 下载软件包
     - name: Make Download
       working-directory: ./openwrt
@@ -134,14 +143,6 @@ jobs:
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
-
-    # SSH连接
-    - name: SSH connection to Actions
-      uses: shaowenchen/debugger-action@v2
-      timeout-minutes: 300
-      continue-on-error: true
-      with:
-        ngrok_token: ${{ secrets.NGROK_TOKEN }}
 
     # 编译固件
     - name: Compile Firmware
