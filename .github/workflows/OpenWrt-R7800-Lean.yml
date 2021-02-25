@@ -162,7 +162,7 @@ jobs:
     steps:
     - name: Don't kill instace
       # if: ${{ failure() }}
-      run: sleep 1h # Prevent to killing instance after failure
+      run: sleep 2h # Prevent to killing instance after failure
       if: env.SSH_ACTIONS == 'true'
 
   download:
