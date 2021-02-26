@@ -142,62 +142,6 @@ cat >> .config <<EOF
 CONFIG_PACKAGE_subversion-server=y
 EOF
 
-#-------------lede17.01独占 开始-------------------
-# nss硬件加速支持
-cat >> .config <<EOF
-CONFIG_LOCALMIRROR="http://182.140.223.146/dl/"
-CONFIG_PACKAGE_kmod-qca-nss-cfi-cryptoapi=y
-CONFIG_PACKAGE_kmod-qca-nss-crypto=y
-CONFIG_PACKAGE_kmod-qca-nss-drv-capwapmgr=y
-CONFIG_PACKAGE_kmod-qca-nss-drv-dtlsmgr=y
-CONFIG_PACKAGE_kmod-qca-nss-drv-gre=y
-CONFIG_PACKAGE_kmod-qca-nss-drv-ipsecmgr=y
-CONFIG_PACKAGE_kmod-qca-nss-drv-l2tpv2=y
-CONFIG_PACKAGE_kmod-qca-nss-drv-lag-mgr=y
-CONFIG_PACKAGE_kmod-qca-nss-drv-map-t=y
-CONFIG_PACKAGE_kmod-qca-nss-drv-pppoe=y
-CONFIG_PACKAGE_kmod-qca-nss-drv-pptp=y
-CONFIG_PACKAGE_kmod-qca-nss-drv-profile=y
-CONFIG_PACKAGE_kmod-qca-nss-drv-pvxlanmgr=y
-CONFIG_PACKAGE_kmod-qca-nss-drv-qdisc=y
-CONFIG_PACKAGE_kmod-qca-nss-drv-tun6rd=y
-CONFIG_PACKAGE_kmod-qca-nss-drv-tunipip6=y
-# CONFIG_PACKAGE_kmod-qca-nss-ecm-noload is not set
-CONFIG_PACKAGE_kmod-qca-nss-ecm-premium=y
-# CONFIG_PACKAGE_kmod-qca-nss-ecm-premium-noload is not set
-# CONFIG_PACKAGE_kmod-qca-nss-ecm-standard is not set
-CONFIG_PACKAGE_kmod-qca-nss-gmac=y
-CONFIG_PACKAGE_kmod-qca-nss-macsec=y
-EOF
-
-cat >> .config <<EOF
-CONFIG_PACKAGE_luci-app-arpbind=y
-CONFIG_PACKAGE_luci-app-commands=y
-CONFIG_PACKAGE_luci-app-firewall=y
-CONFIG_PACKAGE_luci-app-ipsec-vpnd=y #IPSec VPN 服务器
-CONFIG_PACKAGE_luci-app-minidlna=y
-CONFIG_PACKAGE_luci-app-mwan3=y
-CONFIG_PACKAGE_luci-app-mwan3helper=y
-CONFIG_PACKAGE_luci-app-n2n_v2=y
-CONFIG_PACKAGE_luci-app-openvpn=y
-CONFIG_PACKAGE_luci-app-openvpn-server=y
-CONFIG_PACKAGE_luci-app-p910nd=y
-CONFIG_PACKAGE_luci-app-pptp-server=y
-CONFIG_PACKAGE_luci-app-qbittorrent=y
-CONFIG_PACKAGE_luci-app-sfe=y
-CONFIG_PACKAGE_luci-app-smstool=y
-CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Socks=y
-CONFIG_PACKAGE_luci-app-ssrserver-python=y
-CONFIG_PACKAGE_luci-app-statistics=y
-CONFIG_PACKAGE_luci-app-syncdial=y
-CONFIG_PACKAGE_luci-app-uhttpd=y
-#CONFIG_PACKAGE_luci-app-v2ray-server=y #V2ray服务器
-CONFIG_PACKAGE_luci-app-vpnbypass=y
-CONFIG_PACKAGE_luci-app-xunlei=y
-EOF
-
-#-------------lede17.01独占 完成-------------------
-
 
 # 第三方插件选择:
 cat >> .config <<EOF
