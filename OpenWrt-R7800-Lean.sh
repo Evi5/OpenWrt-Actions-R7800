@@ -38,10 +38,9 @@ sed -i 's/V2020/V${{ env.DATE }}/g' package/base-files/files/etc/banner
 # 添加第三方软件包
 #git clone https://github.com/OpenWrt-Actions/OpenAppFilter package/OpenAppFilter
 git clone https://github.com/OpenWrt-Actions/luci-app-serverchan.git package/luci-app-serverchan
-git clone https://github.com/OpenWrt-Actions/luci-app-adguardhome.git package/luci-app-adguardhome
+git clone https://github.com/kongfl888/luci-app-adguardhome.git package/luci-app-adguardhome
 # git clone https://github.com/vernesong/OpenClash package/luci-app-OpenClash
 git clone https://github.com/OpenWrt-Actions/smartdns.git package/smartdns
-git clone https://github.com/OpenWrt-Actions/luci-app-smartdns-compat.git package/luci-app-smartdns-compat
 svn co https://github.com/project-openwrt/openwrt/trunk/package/ctcgfw/luci-theme-atmaterial package/luci-theme-atmaterial
 
 # 创建自定义配置文件 - OpenWrt-R7800
