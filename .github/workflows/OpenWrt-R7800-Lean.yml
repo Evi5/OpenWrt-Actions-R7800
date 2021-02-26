@@ -28,7 +28,7 @@ on:
 
 env:
   # 源
-  REPO_URL: https://github.com/Evi5/lede-17.01
+  REPO_URL: https://github.com/coolsnowwolf/lede
   # 分支
   REPO_BRANCH: master
   # PassWall插件包 
