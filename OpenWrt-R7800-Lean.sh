@@ -169,7 +169,6 @@ CONFIG_UnblockNeteaseMusic_Go=y #解锁网易云灰色歌曲
 # CONFIG_UnblockNeteaseMusic_NodeJS is not set #解锁网易云灰色歌曲
 # CONFIG_PACKAGE_luci-app-hd-idle is not set #磁盘休眠
 CONFIG_PACKAGE_luci-app-wrtbwmon=y #实时流量监测
-CONFIG_PACKAGE_luci-app-xlnetacc=y #迅雷快鸟
 CONFIG_PACKAGE_luci-app-jd-dailybonus=y #京东签到服务
 CONFIG_PACKAGE_luci-app-baidupcs-web=y #百度网盘管理
 EOF
