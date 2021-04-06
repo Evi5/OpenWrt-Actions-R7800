@@ -168,7 +168,7 @@ jobs:
        # if: env.SSH_ACTIONS == 'true'
 
     - name: Don't kill instace
-      if: env.SSR == 'false'
+      if: env.SSR == 'true'
       # if: ${{ failure() }}
       run: sleep 1h # Prevent to killing instance after failure
 
