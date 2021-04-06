@@ -104,7 +104,8 @@ jobs:
 
     # 增加 PassWall 插件源 By rohu168
     - name: Update and install feeds passwall
-      if: env.EX_PKG == 'true'
+      if: env.SSR == 'false'
+      # if: env.EX_PKG == 'true'
       run: |
         chmod +x ssr-plus_passwall.sh && cp ssr-plus_passwall.sh ./openwrt && cd openwrt && ./ssr-plus_passwall.sh
         
