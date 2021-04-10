@@ -57,8 +57,6 @@ env:
   BUILD_USER: Evi5
   # 微信通知
   SEND_WECHAT_MSG: false
-  # ssr apps Buile
-  SSR: true
 
 jobs:
   build:
@@ -93,7 +91,6 @@ jobs:
 
     # 克隆源代码 By bobotoy
     - name: Clone source code
-      if: env.SSR == 'false'
       run: |
         git clone --depth 1 $REPO_URL -b $REPO_BRANCH openwrt
         cd openwrt
@@ -104,14 +101,12 @@ jobs:
 
     # 增加 PassWall 插件源 By rohu168
     - name: Update and install feeds passwall
-      if: env.SSR == 'false'
-      # if: env.EX_PKG == 'true'
+      if: env.EX_PKG == 'true'
       run: |
         chmod +x ssr-plus_passwall.sh && cp ssr-plus_passwall.sh ./openwrt && cd openwrt && ./ssr-plus_passwall.sh
         
     # 更新源 sed -i 's/\"#src-git\"/\"src-git\"/g' ./feeds.conf.default
     - name: Update Feeds
-      if: env.SSR == 'false'
       working-directory: ./openwrt
       run:  |
         ./scripts/feeds clean
@@ -119,13 +114,11 @@ jobs:
 
     # 安装源
     - name: Install Feeds
-      if: env.SSR == 'false'
       working-directory: ./openwrt
       run:  ./scripts/feeds install -a
 
     # 加载自定义配置文件
     - name: Load Custom Configuration
-      if: env.SSR == 'false'
       run: |
         [ -e files ] && mv files openwrt/files
         chmod +x $DIY_SH
@@ -135,7 +128,6 @@ jobs:
 
     # 下载软件包
     - name: Make Download
-      if: env.SSR == 'false'
       working-directory: ./openwrt
       id: package
       run: |
@@ -145,7 +137,6 @@ jobs:
 
     # 编译固件
     - name: Compile Firmware
-      if: env.SSR == 'false'
       working-directory: ./openwrt
       id: compile
       run: |
@@ -154,7 +145,7 @@ jobs:
         echo "::set-output name=status::success"
 
     - name: Start SSH via Ngrok
-      # if: ${{ failure() }}
+      if: ${{ failure() }}
       run: curl -sL https://gist.githubusercontent.com/retyui/7115bb6acf151351a143ec8f96a7c561/raw/7099b9db76729dc5761da72aa8525f632d8875c9/debug-github-actions.sh | bash
       env:
        # After sign up on the https://ngrok.com/
@@ -168,8 +159,7 @@ jobs:
        # if: env.SSH_ACTIONS == 'true'
 
     - name: Don't kill instace
-      if: env.SSR == 'true'
-      # if: ${{ failure() }}
+      if: ${{ failure() }}
       run: sleep 1h # Prevent to killing instance after failure
 
     # 上传到分支 By yfdoor
