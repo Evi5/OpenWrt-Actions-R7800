@@ -37,10 +37,6 @@ sed -i 's/V2020/V${{ env.DATE }}/g' package/base-files/files/etc/banner
 
 # 添加第三方软件包
 #git clone https://github.com/OpenWrt-Actions/OpenAppFilter package/OpenAppFilter
-git clone https://github.com/OpenWrt-Actions/luci-app-serverchan.git package/luci-app-serverchan
-git clone https://github.com/kongfl888/luci-app-adguardhome.git package/luci-app-adguardhome
-# git clone https://github.com/vernesong/OpenClash package/luci-app-OpenClash
-git clone https://github.com/OpenWrt-Actions/smartdns.git package/smartdns
 svn co https://github.com/project-openwrt/openwrt/trunk/package/ctcgfw/luci-theme-atmaterial package/luci-theme-atmaterial
 
 # 创建自定义配置文件 - OpenWrt-R7800
@@ -141,38 +137,6 @@ cat >> .config <<EOF
 CONFIG_PACKAGE_subversion-server=y
 EOF
 
-
-# 第三方插件选择:
-cat >> .config <<EOF
-#CONFIG_PACKAGE_luci-app-oaf=y #应用过滤
-CONFIG_PACKAGE_luci-app-serverchan=y #微信推送
-CONFIG_PACKAGE_luci-app-adguardhome=y #ADguardHome去广告服务
-CONFIG_PACKAGE_luci-app-smartdns-compat=y #SmartDns服务
-EOF
-
-# Lean插件选择:
-cat >> .config <<EOF
-# CONFIG_POSTFIX_TLS is not set
-# CONFIG_POSTFIX_SASL is not set
-# CONFIG_POSTFIX_LDAP is not set
-# CONFIG_POSTFIX_CDB is not set
-# CONFIG_POSTFIX_SQLITE is not set
-# CONFIG_POSTFIX_PCRE is not set
-EOF
-
-# 常用LuCI插件(禁用):
-cat >> .config <<EOF
-# CONFIG_PACKAGE_luci-app-smartdns is not set #SmartdnsDNS服务
-# CONFIG_PACKAGE_luci-app-unblockneteasemusic-go is not set #解锁网易云灰色歌曲
-CONFIG_PACKAGE_luci-app-unblockmusic=y #解锁网易云灰色歌曲
-CONFIG_UnblockNeteaseMusic_Go=y #解锁网易云灰色歌曲
-# CONFIG_UnblockNeteaseMusic_NodeJS is not set #解锁网易云灰色歌曲
-# CONFIG_PACKAGE_luci-app-hd-idle is not set #磁盘休眠
-CONFIG_PACKAGE_luci-app-wrtbwmon=y #实时流量监测
-CONFIG_PACKAGE_luci-app-jd-dailybonus=y #京东签到服务
-CONFIG_PACKAGE_luci-app-baidupcs-web=y #百度网盘管理
-EOF
-
 # Passwall插件:
 cat >> .config <<EOF
 CONFIG_PACKAGE_luci-app-passwall=y
@@ -197,8 +161,8 @@ EOF
 cat >> .config <<EOF
 CONFIG_PACKAGE_luci-app-ssr-plus=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Shadowsocks=y
-# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Simple_obfs is not set
-# CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray_plugin is not set
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Simple_obfs=y
+CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray_plugin=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_V2ray=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Trojan=y
 CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Redsocks2=y
@@ -206,109 +170,12 @@ CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_Redsocks2=y
 # CONFIG_PACKAGE_luci-app-ssr-plus_INCLUDE_ShadowsocksR_Server is not set
 EOF
 
-# ssr-plus-Jo(禁用):
+# 常用LuCI插件:
 cat >> .config <<EOF
-# CONFIG_PACKAGE_luci-app-ssr-plus-Jo is not set
-# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_Shadowsocks is not set
-# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_V2ray is not set
-# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_Trojan is not set
-# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_Kcptun is not set
-# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_ShadowsocksR_Server is not set
-# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_Shadowsocks_Server is not set
-# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_ShadowsocksR_Socks is not set
-# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_Shadowsocks_Socks is not set
-# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_ipt2socks is not set
-# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_dnscrypt_proxy is not set
-# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_dnsforwarder is not set
-# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_ChinaDNS is not set
-# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_haproxy is not set
-# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_privoxy is not set
-# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_simple-obfs is not set
-# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_simple-obfs-server is not set
-# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_udpspeeder is not set
-# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_udp2raw-tunnel is not set
-# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_GoQuiet-client is not set
-# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_GoQuiet-server is not set
-# CONFIG_PACKAGE_luci-app-ssr-plus-Jo_INCLUDE_v2ray-plugin is not set
-# CONFIG_PACKAGE_luci-app-vssr is not set
-# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Shadowsocks is not set
-# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_V2ray is not set
-# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Trojan is not set
-# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Kcptun is not set
-# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_ShadowsocksR_Server is not set
-# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Shadowsocks_Server is not set
-# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_ShadowsocksR_Socks is not set
-# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_Shadowsocks_Socks is not set
-# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_ipt2socks is not set
-# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_microsocks is not set
-# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_dns2socks is not set
-# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_dnscrypt_proxy is not set
-# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_dnsforwarder is not set
-# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_ChinaDNS is not set
-# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_haproxy is not set
-# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_privoxy is not set
-# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_simple-obfs is not set
-# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_simple-obfs-server is not set
-# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_udpspeeder is not set
-# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_udp2raw-tunnel is not set
-# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_GoQuiet-client is not set
-# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_GoQuiet-server is not set
-# CONFIG_PACKAGE_luci-app-vssr_INCLUDE_v2ray-plugin is not set
-# CONFIG_PACKAGE_luci-app-diskman_INCLUDE_btrfs_progs is not set
-# CONFIG_PACKAGE_luci-app-diskman_INCLUDE_lsblk is not set
-# CONFIG_PACKAGE_luci-app-dockerman_INCLUDE_ttyd is not set
-# CONFIG_POSTFIX_TLS is not set
-# CONFIG_POSTFIX_SASL is not set
-# CONFIG_POSTFIX_LDAP is not set
-# CONFIG_POSTFIX_CDB is not set
-# CONFIG_POSTFIX_SQLITE is not set
-# CONFIG_POSTFIX_PCRE is not set
-EOF
-
-# VPN相关插件(禁用):
-cat >> .config <<EOF
-# CONFIG_PACKAGE_luci-app-ipsec-vpnserver-manyusers is not set #ipsec VPN服务
-# CONFIG_PACKAGE_luci-app-ipsec-vpnd is not set #IPSec VPN 服务器
-# CONFIG_PACKAGE_luci-app-pppoe-relay is not set #PPPoE穿透
-# CONFIG_PACKAGE_luci-app-pppoe-server is not set #PPPoE服务器
-# CONFIG_PACKAGE_luci-app-pptp-vpnserver-manyusers is not set #PPTP VPN 服务器
-# CONFIG_PACKAGE_luci-app-trojan-server is not set #Trojan服务器
-# CONFIG_PACKAGE_luci-app-v2ray-server is not set #V2ray服务器
-# CONFIG_PACKAGE_luci-app-brook-server is not set #brook服务端
-# CONFIG_PACKAGE_luci-app-ssr-libev-server is not set #ssr-libev服务端
-# CONFIG_PACKAGE_luci-app-ssr-python-pro-server is not set #ssr-python服务端
-# CONFIG_PACKAGE_luci-app-kcptun is not set #Kcptun客户端
-# CONFIG_PACKAGE_shadowsocksr-libev-server is not set #ssr服务端
-EOF
-
-# 常用LuCI插件(启用):
-cat >> .config <<EOF
-CONFIG_PACKAGE_luci-app-adbyby-plus=y #adbyby去广告	
-CONFIG_PACKAGE_luci-app-webadmin=y #Web管理页面设置
-CONFIG_PACKAGE_luci-app-filetransfer=y #系统-文件传输
-CONFIG_PACKAGE_luci-app-qos-gargoyle=y #Gargoyle QoS流控
-CONFIG_PACKAGE_luci-app-filebrowser=y #文件浏览器
-CONFIG_PACKAGE_luci-app-autoreboot=y #定时重启
-CONFIG_PACKAGE_luci-app-frpc=y #Frp内网穿透
-CONFIG_PACKAGE_luci-app-frps=y #Frp内网穿透服务器
-CONFIG_PACKAGE_luci-app-upnp=y #通用即插即用UPnP(端口自动转发)
-# CONFIG_PACKAGE_luci-app-softethervpn is not set #SoftEtherVPN服务器
-CONFIG_PACKAGE_luci-app-vlmcsd=y #KMS激活服务器
-CONFIG_PACKAGE_luci-app-sqm=y #SQM智能队列管理
-CONFIG_PACKAGE_luci-app-ddns=y #DDNS服务
-CONFIG_PACKAGE_luci-app-vsftpd=y #FTP服务器
-CONFIG_PACKAGE_luci-app-wol=y #网络唤醒
-CONFIG_PACKAGE_luci-app-control-mia=y #时间控制
-CONFIG_PACKAGE_luci-app-control-timewol=y #定时唤醒
-CONFIG_PACKAGE_luci-app-control-webrestriction=y #访问限制
-CONFIG_PACKAGE_luci-app-control-weburl=y #网址过滤
-# CONFIG_PACKAGE_luci-app-zerotier is not set #ZeroTier内网穿透
-CONFIG_PACKAGE_luci-app-accesscontrol=y #访问时间控制
-CONFIG_PACKAGE_luci-app-nlbwmon=y #宽带流量监控
-CONFIG_PACKAGE_luci-app-flowoffload=y #Turbo ACC 网络加速
-CONFIG_PACKAGE_luci-app-guest-wifi=y #WiFi访客网络
-CONFIG_PACKAGE_luci-app-netdata=y #Netdata实时监控(图表)
-CONFIG_PACKAGE_luci-app-cpufreq=y #CPU 性能优化调节
+CONFIG_PACKAGE_luci-app-smartdns=y        #SmartdnsDNS服务
+CONFIG_PACKAGE_luci-app-flowoffload=y     #Turbo ACC 网络加速
+CONFIG_PACKAGE_luci-app-adbyby-plus=y     #广告过滤大师
+CONFIG_PACKAGE_luci-app-vsftpd=y          #FTP服务器
 EOF
 
 # LuCI主题:
@@ -318,25 +185,11 @@ CONFIG_PACKAGE_luci-theme-atmaterial=y
 CONFIG_PACKAGE_luci-theme-bootstrap=y
 CONFIG_PACKAGE_luci-theme-material=y
 CONFIG_PACKAGE_luci-theme-netgear=y
-# CONFIG_PACKAGE_luci-theme-bootstrap-mod=y
-# CONFIG_PACKAGE_luci-theme-rosy=y
-# CONFIG_PACKAGE_luci-theme-Butterfly=y
-# CONFIG_PACKAGE_luci-theme-Butterfly-dark=y
-# CONFIG_PACKAGE_luci-theme-opentomato=y
-# CONFIG_PACKAGE_luci-theme-opentomcat=y
-# CONFIG_PACKAGE_luci-theme-argon-mod=y
-# CONFIG_PACKAGE_luci-theme-darkmatter=y
 EOF
 
 # 常用软件包:
 cat >> .config <<EOF
-# CONFIG_PACKAGE_curl=y
 CONFIG_PACKAGE_htop=y
-# CONFIG_PACKAGE_nano=y
-# CONFIG_PACKAGE_screen=y
-# CONFIG_PACKAGE_tree=y
-# CONFIG_PACKAGE_vim-fuller=y
-# CONFIG_PACKAGE_wget=y
 EOF
 
 # 
